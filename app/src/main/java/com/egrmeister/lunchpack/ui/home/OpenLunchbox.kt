@@ -57,7 +57,8 @@ fun OpenLunchbox(
     val packed = PackingRules.packedByCompartment(items)
     val totals = Compartment.entries.associateWith { c -> items.count { it.compartment == c } }
     BoxWithConstraints(modifier.fillMaxWidth()) {
-        val stacked = maxWidth < 340.dp
+        val boxWidth = maxWidth
+        val stacked = boxWidth < 340.dp
         if (stacked) {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 BoxFrame {
@@ -110,7 +111,7 @@ fun OpenLunchbox(
                     selected == Compartment.BOTTLE,
                     onSelect,
                     3,
-                    Modifier.width(if (maxWidth < 420.dp) 80.dp else 100.dp),
+                    Modifier.width(if (boxWidth < 420.dp) 80.dp else 100.dp),
                     label = "Bottle",
                 )
             }
